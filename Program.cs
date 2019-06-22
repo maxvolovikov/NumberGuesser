@@ -32,50 +32,91 @@ namespace NumberGuesser
             Console.WriteLine(@"Good day to you {0}, welcome to my game {1}!", userName, appName);
             Console.WriteLine();
 
-            //initial correct number
-            int correctNumber = 8;
-
-            //initial guess number
-            int guessNumber = 0;
-
-            //ask a user for a guess
-            Console.WriteLine("Dear {0}, guess a number between 1 and 10 please", userName);
-            Console.WriteLine();
-
-            //while guess is not coorect
-            while (guessNumber != correctNumber)
+            while(true)
             {
-                //get users input
-                string input = Console.ReadLine();
+                //initial correct number
+                Random random = new Random();
+                int correctNumber = random.Next(1, 10);
 
-                //cast to integer and put to guessNumber
-                guessNumber = Int16.Parse(input);
+                //initial guess number
+                int guessNumber = 0;
 
-                //check if the guess is correct
-                if (guessNumber != correctNumber)
+                //ask a user for a guess
+                Console.WriteLine("Dear {0}, guess a number between 1 and 10 please", userName);
+                Console.WriteLine();
+
+                //while guess is not coorect
+                while (guessNumber != correctNumber)
                 {
-                    //change text color
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    //get users input
+                    string input = Console.ReadLine();
 
-                    //app info stamp
-                    Console.WriteLine("My dear {0}, you are upsetting me {1} is not a correct guess! I will give you another try, but please try harder!", userName, guessNumber);
+                    //check if input is a number
+                    if (!int.TryParse(input, out guessNumber))
+                    {
+                        //change text color
+                        Console.ForegroundColor = ConsoleColor.Red;
 
-                    //reset console color
-                    Console.ResetColor();
+                        //app info stamp
+                        Console.WriteLine("My dear {0}, do you know what numbers are? {1} is not a NUMBER! Try again", userName, guessNumber);
+
+                        //reset console color
+                        Console.ResetColor();
+
+                        //keep going
+                        continue;
+                    }
+
+                    //cast to integer and put to guessNumber
+                    guessNumber = Int16.Parse(input);
+
+                    //check if the guess is correct
+                    if (guessNumber != correctNumber)
+
+                    {
+                        //change text color
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        //app info stamp
+                        Console.WriteLine("My dear {0}, you are upsetting me {1} is not a correct guess! I will give you another try, but please try harder!", userName, guessNumber);
+
+                        //reset console color
+                        Console.ResetColor();
+                    }
+                }
+
+                //output the confirmation of the right guess
+                //change text color
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                //app info stamp
+                Console.WriteLine("My dear {0}, you must be psychic {1} is a correct guess!", userName, guessNumber);
+
+                //reset console color
+                Console.ResetColor();
+
+                //ask if user wants to play again
+                Console.WriteLine(@"Are you enjoying my game? You DO want to play again, right?
+[Y or N]");
+                //collect continue answer
+                string toContinue = Console.ReadLine().ToUpper();
+
+                //check answer
+                if(toContinue == "Y")
+                {
+                    continue;
+                }
+                else if(toContinue =="N")
+                {
+                    return;
+                }
+                else
+                {
+                    return;
                 }
             }
 
-            //output the confirmation of the right guess
-            //change text color
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-            //app info stamp
-            Console.WriteLine("My dear {0}, you must be psychic {1} is a correct guess!", userName, guessNumber);
-
-            //reset console color
-            Console.ResetColor();
-
-
+            
         }
 
     }
