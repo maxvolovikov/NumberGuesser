@@ -6,31 +6,10 @@ namespace NumberGuesser
     {
         public static void Main(string[] args)
         {
-            //app stamp values
-            string appName = "Guess My Number";
-            string appVersion = "1.0.0";
-            string appAuthor = "MaxVol";
+            GetAppInfo(); //run get app info func
 
-            //change text color
-            Console.ForegroundColor = ConsoleColor.Green;
+            string userName = GreetUser();
 
-            //app info stamp
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
-
-            //reset console color
-            Console.ResetColor();
-
-            //ask name
-            Console.WriteLine();
-            Console.WriteLine("What is your name Stranger?");
-
-            //read input val
-            var userName = Console.ReadLine();
-
-            //greet user
-            Console.WriteLine();
-            Console.WriteLine(@"Good day to you {0}, welcome to my game {1}!", userName, appName);
-            Console.WriteLine();
 
             while(true)
             {
@@ -118,6 +97,40 @@ namespace NumberGuesser
 
             
         }
+        //get app information
+        static void GetAppInfo()
+        {
+            //app stamp values
+            string appName = "Guess My Number";
+            string appVersion = "1.0.0";
+            string appAuthor = "MaxVol";
 
+            //change text color
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            //app info stamp
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+
+            //reset console color
+            Console.ResetColor();
+        }
+
+        //get user name and greet 
+        static string GreetUser()
+        {
+            //ask name
+            Console.WriteLine();
+            Console.WriteLine("What is your name Stranger?");
+
+            //read input val
+            var userName = Console.ReadLine();
+
+            //greet user
+            Console.WriteLine();
+            Console.WriteLine(@"Good day to you {0}, welcome to my game!", userName);
+            Console.WriteLine();
+
+            return (userName);
+        }
     }
 }
